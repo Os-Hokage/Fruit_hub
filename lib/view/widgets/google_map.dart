@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/controller/size_config.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -15,24 +17,26 @@ class DeliveryMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50)
-      ),
-      child: Container(
-        height: getProportionateScreenHeight(128),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50)
-        ),
-        child: GoogleMap(
-          myLocationButtonEnabled: false,
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
-          ),
+    return Container(
+      height: getProportionateScreenHeight(128),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Align(
+            alignment: Alignment.bottomRight,
+            heightFactor: 0.3,
+            widthFactor: 2.5,
+            child: GoogleMap(
+              myLocationButtonEnabled: false,
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: _center,
+                zoom: 11.0,
+              ),
+            ),
         ),
       ),
     );
   }
 }
+
+
